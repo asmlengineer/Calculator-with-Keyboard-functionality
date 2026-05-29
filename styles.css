@@ -1,0 +1,183 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f1419;
+  --surface: #1a2332;
+  --surface-elevated: #243044;
+  --text: #f0f4f8;
+  --text-muted: #8b9cb3;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-glow: rgba(59, 130, 246, 0.35);
+  --op: #f59e0b;
+  --op-hover: #d97706;
+  --fn: #64748b;
+  --fn-hover: #475569;
+  --equals: #10b981;
+  --equals-hover: #059669;
+  --radius: 16px;
+  --shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 130, 246, 0.15), transparent),
+    var(--bg);
+  color: var(--text);
+  padding: 1.5rem;
+}
+
+.app {
+  width: 100%;
+  max-width: 360px;
+}
+
+.calculator {
+  background: var(--surface);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.display-wrap {
+  background: var(--surface-elevated);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  min-height: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  text-align: right;
+  overflow: hidden;
+}
+
+.expression {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  min-height: 1.25rem;
+  word-break: break-all;
+  margin-bottom: 0.35rem;
+  width: 100%;
+}
+
+.display {
+  font-size: clamp(2rem, 8vw, 2.75rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  word-break: break-all;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+}
+
+.key {
+  appearance: none;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.35rem;
+  font-weight: 500;
+  padding: 1rem;
+  cursor: pointer;
+  background: var(--surface-elevated);
+  color: var(--text);
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease,
+    box-shadow 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.key:hover {
+  filter: brightness(1.12);
+}
+
+.key:active,
+.key.key-active {
+  transform: scale(0.94);
+}
+
+.key:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.key-fn {
+  background: var(--fn);
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.key-fn:hover {
+  background: var(--fn-hover);
+}
+
+.key-op {
+  background: var(--op);
+  color: #1a1200;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.key-op:hover {
+  background: var(--op-hover);
+}
+
+.key-equals {
+  background: var(--equals);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.key-equals:hover {
+  background: var(--equals-hover);
+}
+
+.key-zero {
+  grid-column: span 2;
+}
+
+.hint {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.hint kbd {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  background: var(--surface-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: inherit;
+  font-size: 0.9em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key {
+    transition: none;
+  }
+}
